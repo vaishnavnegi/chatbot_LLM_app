@@ -1,7 +1,8 @@
 from agents import (GuardAgent,
                     ClassificationAgent,
                     DetailsAgent,
-                    AgentProtocol
+                    AgentProtocol,
+                    RecommendationAgent
                     )
 import os
 
@@ -13,7 +14,10 @@ if __name__ == "__main__":
     classification_agent = ClassificationAgent()
     
     agent_dict: dict[str, AgentProtocol] = {
-        "details_agent": DetailsAgent()
+        "details_agent": DetailsAgent(),
+        "recommendation_agent": RecommendationAgent(r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\apriori_recommendations.json",
+                                                    r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\popularity_recommendation.csv"
+            ),
     }
     
     messages = []
