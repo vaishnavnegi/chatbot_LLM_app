@@ -2,7 +2,8 @@ from agents import (GuardAgent,
                     ClassificationAgent,
                     DetailsAgent,
                     AgentProtocol,
-                    RecommendationAgent
+                    RecommendationAgent,
+                    OrderTakingAgent
                     )
 import os
 
@@ -18,6 +19,7 @@ if __name__ == "__main__":
         "recommendation_agent": RecommendationAgent(r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\apriori_recommendations.json",
                                                     r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\popularity_recommendation.csv"
             ),
+        "order_taking_agent": OrderTakingAgent(),
     }
     
     messages = []
@@ -48,6 +50,7 @@ if __name__ == "__main__":
          # Get the chosen agent's response
         agent = agent_dict[chosen_agent]
         response = agent.get_response(messages)
+        print("Agent output: ", response)
         
         messages.append(response)
 

@@ -8,14 +8,12 @@ load_dotenv()
 
 
 class OrderTakingAgent():
-    def __init__(self, recommendation_agent):
+    def __init__(self):
         self.client = OpenAI(
             api_key=os.getenv("RUNPOD_TOKEN"),
             base_url=os.getenv("RUNPOD_CHATBOT_URL"),
         )
         self.model_name = os.getenv("MODEL_NAME")
-
-        self.recommendation_agent = recommendation_agent
     
     def get_response(self,messages):
         messages = deepcopy(messages)
@@ -102,7 +100,7 @@ class OrderTakingAgent():
         output = self.postprocess(chatbot_output,messages,asked_recommendation_before)
         return output
 
-    def postprocess(self,output,messages,asked_recommendation_before):
+    def postprocess(self,output):
         output = json.loads(output)
 
         if type(output["order"]) == str:
@@ -116,7 +114,6 @@ class OrderTakingAgent():
             "memory": {"agent":"order_taking_agent",
                        "step number": output["step number"],
                        "order": output["order"],
-                       "asked_recommendation_before": asked_recommendation_before
                       }
         }
         
