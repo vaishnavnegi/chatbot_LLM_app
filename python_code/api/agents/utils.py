@@ -28,13 +28,18 @@ def double_check_json_output(client,model_name,json_string):
     prompt = f""" You will check this json string and correct any mistakes that will make it invalid. Then you will return the corrected json string. Nothing else. 
     If the Json is correct just return it.
 
+    If there is any text before or after the JSON string, reomove it.
     Do NOT return a single letter outside of the json string.
-
+    The first character to be written is an open curly brace of the JSON and the last character to be written is the closing curly brace.
+    
+    You should check the json string for the following text between triple backticks:
+    ```
     {json_string}
+    ```
     """
 
     messages = [{"role": "user", "content": prompt}]
-
     response = get_chatbot_response(client,model_name,messages)
+    response = response.replace("```","")
 
     return response

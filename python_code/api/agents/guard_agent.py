@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 import json
 from copy import deepcopy # To cpoy by values and not by reference
-from .utils import get_chatbot_response
+from .utils import get_chatbot_response, double_check_json_output
 from openai import OpenAI
 load_dotenv()
 
@@ -41,6 +41,8 @@ class GuardAgent():
         input_messages = [{"role": "system", "content": system_prompt}] + messages[-3:]
 
         chatbot_output =get_chatbot_response(self.client,self.model_name,input_messages)
+        chatbot_output = double_check_json_output(self.client, self.model_name, chatbot_output)
+        # Might be an extra LLM call but ensures good JSON format.
         output = self.postprocess(chatbot_output)
         
         return output
