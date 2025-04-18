@@ -97,7 +97,7 @@ class OrderTakingAgent():
         # double check json 
         chatbot_output = double_check_json_output(self.client,self.model_name,chatbot_output)
 
-        output = self.postprocess(chatbot_output,messages,asked_recommendation_before)
+        output = self.postprocess(chatbot_output)
         return output
 
     def postprocess(self,output):
