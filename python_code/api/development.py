@@ -13,19 +13,20 @@ def main():
 if __name__ == "__main__":
     guard_agent = GuardAgent()
     classification_agent = ClassificationAgent()
-    
+    recommendation_agent = RecommendationAgent(r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\apriori_recommendations.json",
+                                                    r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\popularity_recommendation.csv"
+            )
+
     agent_dict: dict[str, AgentProtocol] = {
         "details_agent": DetailsAgent(),
-        "recommendation_agent": RecommendationAgent(r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\apriori_recommendations.json",
-                                                    r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\popularity_recommendation.csv"
-            ),
-        "order_taking_agent": OrderTakingAgent(),
+        "recommendation_agent": recommendation_agent,
+        "order_taking_agent": OrderTakingAgent(recommendation_agent),
     }
     
     messages = []
     while True:
         # Display the chat history
-        # os.system('cls' if os.name == 'nt' else 'clear')
+        os.system('cls' if os.name == 'nt' else 'clear')
         
         print("\n\nPrint Messages ...............")
         for message in messages:
@@ -50,7 +51,6 @@ if __name__ == "__main__":
          # Get the chosen agent's response
         agent = agent_dict[chosen_agent]
         response = agent.get_response(messages)
-        print("Agent output: ", response)
         
         messages.append(response)
 

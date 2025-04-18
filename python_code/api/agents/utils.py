@@ -30,6 +30,7 @@ def double_check_json_output(client,model_name,json_string):
 
     If there is any text before or after the JSON string, reomove it.
     Do NOT return a single letter outside of the json string.
+    Make sure that each key is enclosed in double quotes.
     The first character to be written is an open curly brace of the JSON and the last character to be written is the closing curly brace.
     
     You should check the json string for the following text between triple backticks:
@@ -40,6 +41,6 @@ def double_check_json_output(client,model_name,json_string):
 
     messages = [{"role": "user", "content": prompt}]
     response = get_chatbot_response(client,model_name,messages)
-    response = response.replace("```","")
+    response = response.replace("`","")
 
     return response
