@@ -13,8 +13,8 @@ def main():
 if __name__ == "__main__":
     guard_agent = GuardAgent()
     classification_agent = ClassificationAgent()
-    recommendation_agent = RecommendationAgent(r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\apriori_recommendations.json",
-                                                    r"C:\Users\vaish\Desktop\chatbot_LLM_app\python_code\api\recommendation_objects\popularity_recommendation.csv"
+    recommendation_agent = RecommendationAgent('recommendation_objects/apriori_recommendations.json',
+                                                    'recommendation_objects/popularity_recommendation.csv'
             )
 
     agent_dict: dict[str, AgentProtocol] = {
