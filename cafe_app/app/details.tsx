@@ -6,8 +6,8 @@ import { useLocalSearchParams } from "expo-router";
 import PageHeader from '@/components/PageHeader';
 import { useCart } from '@/components/CartContext';
 import Toast from 'react-native-root-toast';
-// import DescriptionSection from '@/components/DescriptionSection';
-// import SizesSection from '@/components/SizesSection';
+import DescriptionSection from '@/components/DescriptionSection';
+import SizesSection from '@/components/SizesSection';
 import DetailsHeader from '@/components/DetailsHeader';
 
 const DetailsPage = () => {
